@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         ListenerBotones lis = new ListenerBotones(this);
         this.btnAgregar.setOnClickListener(lis);
+        this.btnVerCoordenadas.setOnClickListener(lis);
     }
 
 

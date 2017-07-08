@@ -1,10 +1,14 @@
 package com.example.robertocruzleija.ubicacionesapp.data;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by Roberto Cruz Leija on 08/07/2017.
  */
 
-public class Coordenada {
+public class Coordenada implements Serializable {
 
     private String nombre;
     private double lat;

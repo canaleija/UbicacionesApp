@@ -1,9 +1,11 @@
 package com.example.robertocruzleija.ubicacionesapp.listeners;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.robertocruzleija.ubicacionesapp.ListViewActivity;
 import com.example.robertocruzleija.ubicacionesapp.MainActivity;
 import com.example.robertocruzleija.ubicacionesapp.R;
 import com.example.robertocruzleija.ubicacionesapp.data.Coordenada;
@@ -35,12 +37,13 @@ public class ListenerBotones implements View.OnClickListener {
                 Coordenada co1 = new Coordenada(nombre,lati,longi);
                 // agregamos la coordenada a la coleccion
                 contexto.getCoordenadas().add(co1);
-                System.out.println();
-
                 break;
             }
             case R.id.btnVerCoordenadas:{
-
+                Intent intento = new Intent(contexto, ListViewActivity.class);
+                // mandar las coordenadas
+               // TODO: MANDAR LAS COORDENADAS POR EL INTENTO
+                contexto.startActivity(intento);
                 break;
             }
 
