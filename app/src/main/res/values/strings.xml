@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">UbicacionesApp</string>
+    <string name="titulo_formulario">Agregar Coordenada</string>
 </resources>
