@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.robertocruzleija.ubicacionesapp.adapters.AdaptadorCoordenada;
 import com.example.robertocruzleija.ubicacionesapp.data.Coordenada;
 
 import java.util.ArrayList;
@@ -23,15 +24,14 @@ public class ListViewActivity extends AppCompatActivity {
         // desmenusamos el bundle
         Coordenada coor = (Coordenada) extras.getSerializable("coordenada0");
         ArrayList<Coordenada> coordenadas = new ArrayList<>();
-
-        String []items = new String[5];
+        // llenando la coleccion de coordenadas con lo que tenia el bundle
         for(int x=0; x < extras.size();x++){
             coordenadas.add((Coordenada)extras.getSerializable("coordenada"+x));
-            items[x] = coordenadas.get(x).toString();
         }
-
-        ArrayAdapter<String> itemsAdapter =
-                new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, items);
-         this.lista.setAdapter(itemsAdapter);
+        // instanciamos el adaptador nopiñata
+        AdaptadorCoordenada adapCoordenada =
+                 new AdaptadorCoordenada(this,coordenadas);
+        // seteamos el nuevo adaptador al listview
+         this.lista.setAdapter(adapCoordenada);
     }
 }
