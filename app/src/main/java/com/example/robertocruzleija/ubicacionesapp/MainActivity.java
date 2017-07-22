@@ -7,6 +7,7 @@ import android.widget.EditText;
 
 import com.example.robertocruzleija.ubicacionesapp.data.Coordenada;
 import com.example.robertocruzleija.ubicacionesapp.listeners.ListenerBotones;
+import com.example.robertocruzleija.ubicacionesapp.persistencia.DataBaseHelper;
 
 import java.util.ArrayList;
 
@@ -16,13 +17,18 @@ public class MainActivity extends AppCompatActivity {
     private Button btnAgregar,btnVerCoordenadas;
     private EditText edtNombre,edtLati, edtLongi;
     private ArrayList<Coordenada> coordenadas;
+    private DataBaseHelper helper;
 
-
+    public DataBaseHelper getHelper() {
+        return helper;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.helper = new DataBaseHelper(this);
+
         // referenciar los views
         refComponentes();
         this.coordenadas = new ArrayList<Coordenada>();

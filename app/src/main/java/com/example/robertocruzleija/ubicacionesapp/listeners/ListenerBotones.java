@@ -10,6 +10,8 @@ import com.example.robertocruzleija.ubicacionesapp.ListViewActivity;
 import com.example.robertocruzleija.ubicacionesapp.MainActivity;
 import com.example.robertocruzleija.ubicacionesapp.R;
 import com.example.robertocruzleija.ubicacionesapp.data.Coordenada;
+import com.example.robertocruzleija.ubicacionesapp.persistencia.DataBaseHelper;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.util.ArrayList;
 
@@ -20,9 +22,11 @@ import java.util.ArrayList;
 public class ListenerBotones implements View.OnClickListener {
 
     MainActivity contexto;
+
      // constructor por defecto
     public ListenerBotones(MainActivity contexto) {
        this.contexto = contexto;
+
     }
 
     @Override
@@ -38,25 +42,35 @@ public class ListenerBotones implements View.OnClickListener {
                 double longi = Double.parseDouble(contexto.getEdtLongi().getText().toString());
                 // instanciar un nueva coordenada
                 Coordenada co1 = new Coordenada(nombre,lati,longi);
+                /**
                 // agregamos la coordenada a la coleccion
                 contexto.getCoordenadas().add(co1);
+                 **/
+                // agregar la coordenada a la base de datos
+                RuntimeExceptionDao<Coordenada,Integer> daoCoordenadaChulo =
+                        this.contexto.getHelper().getDaoCoordenadaPoderoso();
+                daoCoordenadaChulo.create(co1);
+
                 break;
             }
             case R.id.btnVerCoordenadas:{
                 Intent intento = new Intent(contexto, ListViewActivity.class);
                 // mandar las coordenadas
                 //genero una referencia de la coleccion de coordenadas
-                ArrayList<Coordenada> aux = contexto.getCoordenadas();
-                Bundle extras = new Bundle();
+               // ArrayList<Coordenada> aux = contexto.getCoordenadas();
+               // Bundle extras = new Bundle();
                 // agregar todas las coordenadas de la coleccion +
                 // al objeto bundle llamado extras
                 // recorrer todas las coordenadas
-                for (int x=0; x < aux.size();x++){
-                    extras.putSerializable("coordenada"+x,aux.get(x));
-                }
+              //  for (int x=0; x < aux.size();x++){
+               //     extras.putSerializable("coordenada"+x,aux.get(x));
+               // }
                 // agregamos el bundle como extra
-                intento.putExtras(extras);
+                //intento.putExtras(extras);
                 // se ejecuta la actividad
+
+                // cerrar la conexion a la BD
+                this.contexto.getHelper().close();
                 contexto.startActivity(intento);
                 break;
             }

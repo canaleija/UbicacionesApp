@@ -2,18 +2,31 @@ package com.example.robertocruzleija.ubicacionesapp.data;
 
 import android.os.Parcelable;
 
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
+
 import java.io.Serializable;
 
 /**
  * Created by Roberto Cruz Leija on 08/07/2017.
  */
 
+@DatabaseTable(tableName = "coordenada")
 public class Coordenada implements Serializable {
 
+    @DatabaseField(generatedId = true)
+    private int id;
+    @DatabaseField(canBeNull = false,index = true)
     private String nombre;
+    @DatabaseField
     private double lat;
+    @DatabaseField
     private double longi;
 
+    // ORMLITE ME PIDE UN CONSTRUCTOR POR DEFECTO
+    public Coordenada(){
+
+    }
     public Coordenada(String nombre, double lat, double longi) {
         this.nombre = nombre;
         this.lat = lat;
@@ -42,6 +55,10 @@ public class Coordenada implements Serializable {
 
     public void setLongi(double longi) {
         this.longi = longi;
+    }
+
+    public int getId() {
+        return id;
     }
 
     @Override
