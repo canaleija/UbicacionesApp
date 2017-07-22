@@ -1,0 +1,25 @@
+#
+# generated on 2017/07/22 01:45:32
+#
+# --table-start--
+dataClass=com.example.robertocruzleija.ubicacionesapp.data.Coordenada
+tableName=coordenada
+# --table-fields-start--
+# --field-start--
+fieldName=id
+generatedId=true
+# --field-end--
+# --field-start--
+fieldName=nombre
+canBeNull=false
+indexName=coordenada_nombre_idx
+# --field-end--
+# --field-start--
+fieldName=lat
+# --field-end--
+# --field-start--
+fieldName=longi
+# --field-end--
+# --table-fields-end--
+# --table-end--
+#################################
