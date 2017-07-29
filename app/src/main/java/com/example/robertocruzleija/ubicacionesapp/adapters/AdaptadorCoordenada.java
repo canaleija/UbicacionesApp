@@ -8,10 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.example.robertocruzleija.ubicacionesapp.ListViewActivity;
 import com.example.robertocruzleija.ubicacionesapp.R;
 import com.example.robertocruzleija.ubicacionesapp.data.Coordenada;
+import com.example.robertocruzleija.ubicacionesapp.listeners.ControladorBotonesItem;
 
 import org.w3c.dom.Text;
 
@@ -23,9 +26,12 @@ import java.util.ArrayList;
 
 public class AdaptadorCoordenada extends ArrayAdapter<Coordenada> {
 
+    ListViewActivity context;
+
     public AdaptadorCoordenada(Context context,
                                ArrayList<Coordenada>resource) {
         super(context, 0, resource);
+        this. context = (ListViewActivity)context;
     }
 
     @Override
@@ -40,7 +46,15 @@ public class AdaptadorCoordenada extends ArrayAdapter<Coordenada> {
         TextView nombre = (TextView) convertView.findViewById(R.id.tvItemNombre);
         TextView latitud = (TextView) convertView.findViewById(R.id.tvItemLatitud) ;
         TextView longitud = (TextView) convertView.findViewById(R.id.tvItemLongitud);
+        // ya referenciamos los imagebutton
+        ImageButton ibtnEliminar =(ImageButton) convertView.findViewById(R.id.imageButtonEliminar);
+        ImageButton ibtnEditar = (ImageButton) convertView.findViewById(R.id.imageButtonEditar);
+        ImageButton ibtnVerMapa = (ImageButton) convertView.findViewById(R.id.imageButtonVer);
 
+        ControladorBotonesItem controladorBotonesItem = new ControladorBotonesItem(this,context.getHelper(),coordenada);
+        ibtnEditar.setOnClickListener(controladorBotonesItem);
+        ibtnEliminar.setOnClickListener(controladorBotonesItem);
+        ibtnVerMapa.setOnClickListener(controladorBotonesItem);
         // Mandamos el valor de la coordenada completa
         nombre.setText(coordenada.getNombre());
         latitud.setText("Latitud: "+coordenada.getLat());

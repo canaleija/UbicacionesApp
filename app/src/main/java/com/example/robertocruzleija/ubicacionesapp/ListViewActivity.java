@@ -41,4 +41,8 @@ public class ListViewActivity extends AppCompatActivity {
         // seteamos el nuevo adaptador al listview
          this.lista.setAdapter(adapCoordenada);
     }
+
+    public DataBaseHelper getHelper() {
+        return helper;
+    }
 }
