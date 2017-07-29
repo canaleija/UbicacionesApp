@@ -81,4 +81,9 @@ public class MainActivity extends AppCompatActivity {
         this.coordenadas = coordenadas;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.helper = new DataBaseHelper(this);
+    }
 }

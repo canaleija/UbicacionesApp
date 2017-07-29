@@ -45,4 +45,10 @@ public class ListViewActivity extends AppCompatActivity {
     public DataBaseHelper getHelper() {
         return helper;
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.helper.close();
+    }
 }
